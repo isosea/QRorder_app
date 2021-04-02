@@ -1,0 +1,34 @@
+<div class="header">
+  <h1 class="header_title">注文リスト<h1>
+</div>
+<div class="sub_header">
+  <%= link_to "メニュー選択に戻る", root_path, class: "sub_header_link" %>
+</div>
+
+<div class="main">
+  <div class="orderlist_content">
+    <ul class="orderlist_contents_items_list">
+      <li class="orderlist_contents_items_listitem">
+        <%= image_tag "mabo.jpeg", class: "orderlist_item_img" %>
+        <div class="menu_item_info">
+          <p class="menu_item_info_name">定食</p>
+          <p class="menu_item_info_price">
+            1000円<span class="text-gray">(税抜)</span>
+          </p>
+          <div class="orderlist_items_option">
+            <div class="item_number_btn">
+              <div class="item_number_minus">
+                <i class="fas fa-minus" aria-hidden="true">-</i>
+              </div>
+              <span class="item_number">2</span>
+              <div class="item_number_plus">
+                <i class="fas fa-plus" aria-hidden="true">+</i>
+              </div>
+            </div>
+            <%= link_to "削除", "#", class: "orderlist_items_option_delete" %>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

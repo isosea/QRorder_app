@@ -1,0 +1,31 @@
+<div class="modal item_detail">
+  <div class="item_detail_img">
+    <%= image_tag "mabo.jpeg" %>
+  </div>
+  <div class="item_detail_info">
+    <p class="item_detail_name">
+      定食
+    </p>
+    <p class="item_detail_price">
+      1000円<span class="text_gray">(税抜)</span>
+    </p>
+    <p class="item_detail_description">
+      おすすめのセットです。
+    </p>
+    <p class="item_options">
+  </div>
+  <div class="item_detail_operation">
+    <div class="item_number_btn_wrap">
+      <p class="item_number_btn_headline">数量</p>
+      <div class="item_number_btn">
+        <%= button_to "text", class: "item_number_minus limit" %>
+        <span class="item_number"></span>
+        <%= button_to "text", class: "item_number_plus" %>
+      </div>
+    </div>
+    <div class="item_detail_btns">
+      <%= link_to "追加", "#", class: "round_btn round_btn_blue" %>
+      <%= link_to "注文する", "#", class: "round_btn round_btn_red" %>
+    </div>
+  </div>
+</div>

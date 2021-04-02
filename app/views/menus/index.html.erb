@@ -2,36 +2,70 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-12">
-  			<div class="wrapper menu">                    
+  			<div class="wrapper menu">   
+
 					<div class="header">
 						<div class="header_setting">
-							<%= link_to "その他", "#", class: "header_btn_inner" %>
+							<%= link_to "≡", "#", class: "header_btn_inner" %>
 						</div>
 						<h1 class="header_title">
 							QR Order
 						</h1>
 						<div class="header_btn header_btn_blue">
-							<%= link_to "履歴", "#", class: "header_btn_inner" %>
+							<%= link_to "履歴", history_path, class: "header_btn_inner" %>
 						</div>
 						<div class="header_btn header_btn_red">
-							<%= link_to "お会計", "#", class: "header_btn_inner" %>
+							<%= link_to "お会計", check_path, class: "header_btn_inner" %>
 						</div>
 					</div>
 
 					<div class="main">
 						<div class="menu_sidenavi">
 							<ul class="menu_sidenavi_list">
-								<li class="menu_sidenavi_listitem">おすすめ</li>
+								<li class="menu_sidenavi_listitem active">
+									<%= link_to "おすすめ", "#" %>
+								</li>
 							</ul>
 						</div>
 						<div class="menu_content">
 							<div class="menu_content_items">
 								<h2 class="menu_content_items_title">おすすめ</h2>
 								<ul class="menu_content_items_list">
-									<li class="menu_content_items_listitem">定食</li>
+									<li class="menu_content_items_listitem">
+										<%= link_to(show_path, class: "modal_item_detail") do %>
+											<div>
+												<%= image_tag "mabo.jpeg", class: "menu_item_img" %>
+											</div>
+											<div class="menu_item_info">
+												<p class="menu_item_info_name">
+													定食
+												</p>
+												<p class="menu_item_info_price_wrap list">
+													<span class="menu_item_info_price">1000円</span>
+													<span class="text_gray list">(税抜)</span>
+												</p>
+											</div>
+										<% end %>
+									</li>
 								</ul>
 							</div>
 						</div>
+					</div>
+
+					<div class="menu_total">
+						<div class="menu_total_info">
+							<div class="menu_total_info_unit">
+								<span class="menu_total_info_headline">数量</span>
+								<span class="menu_total_info_description">2</span>
+							</div>
+							<div class="menu_total_info_unit">
+								<span class="menu_total_info_headline">合計金額</span>
+								<span class="menu_total_info_description">2000円
+									<span class="text_gray">(税抜)</span>
+								</span>
+							</div>
+						</div>
+						<%= link_to "ご注文", confirm_path, class: "menu_order_btn" %>
 					</div>
 
 				</div>
