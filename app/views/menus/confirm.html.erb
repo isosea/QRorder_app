@@ -2,7 +2,10 @@
   <h1 class="header_title">注文リスト<h1>
 </div>
 <div class="sub_header">
-  <%= link_to "メニュー選択に戻る", root_path, class: "sub_header_link" %>
+  <%= link_to(root_path, class: "sub_header_link") do %>
+    <i class="fas fa-angle-left icon"></i>
+    メニュー選択に戻る
+  <% end %>
 </div>
 <div class="total">
   <div class="total_list_wrap">
@@ -17,7 +20,9 @@
       </li>
     </ul>
   </div>
-  <%= link_to "注文をする", root_path, class: "round_btn round_btn_red" %>
+  <div class="round_btn round_btn_red">
+    <%= link_to "注文をする", root_path %>
+  </div>
 </div>
 <div class="main">
   <div class="orderlist_content">
@@ -32,11 +37,11 @@
           <div class="orderlist_items_option">
             <div class="item_number_btn">
               <div class="item_number_minus">
-                <i class="fas fa-minus" aria-hidden="true">-</i>
+                <i class="fas fa-minus" aria-hidden="true"></i>
               </div>
               <span class="item_number">2</span>
               <div class="item_number_plus">
-                <i class="fas fa-plus" aria-hidden="true">+</i>
+                <i class="fas fa-plus" aria-hidden="true"></i>
               </div>
             </div>
             <%= link_to "削除", "#", class: "orderlist_items_option_delete" %>

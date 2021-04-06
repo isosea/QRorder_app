@@ -1,6 +1,8 @@
 class MenusController < ApplicationController
 
  def index
+  @p = 1
+  gon.number = @p
  end
 
  def show
