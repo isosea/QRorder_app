@@ -29,7 +29,7 @@
 							<ul class="menu_content_items_list">
 								<li class="menu_content_items_listitem">
 
-									<%= link_to(show_path, class: "modal_item_detail") do %>
+									<div class="modal_item_detail">
 										<div>
 											<%= image_tag "mabo.jpeg", class: "menu_item_img" %>
 										</div>
@@ -50,8 +50,14 @@
 													<i class="fas fa-plus" aria-hidden="true"></i>
 												</div>
 											</div>
+											<div class="item_delete_btn">
+												<% if logged_in? %>
+													<%= link_to "delete", menus_path, method: :delete,
+																				data: { confirm: "You sure?" } %>
+												<% end %>
+											</div>
 										</div>
-									<% end %>
+									</div>
 
 									<%= link_to(show_path, class: "modal_item_detail") do %>
 										<div>

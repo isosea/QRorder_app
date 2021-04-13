@@ -1,0 +1,19 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="menu_form">
+      <%= form_with(model: @menu, local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="name_field">
+          <%= f.text_field :name, placeholder: "メニュー名" %>
+        </div>
+        <div class="price_field">
+          <%= f.number_field :price, placeholder: "値段" %>
+        </div>
+        <div class="field">
+          <%= f.text_area :content, placeholder: "メニュー内容" %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-primary" %>
+      <% end %>
+    </section>
+  </aside>
+</div>

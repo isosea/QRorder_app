@@ -709,37 +709,6 @@ li.menu_sidenavi_listitem.courses.active a::after {
   margin: 0 0 10px 0;
 }
 
-li.menu_content_items_listitem a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  min-height: 90px;
-  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.13);
-          box-shadow: 0 1px 8px rgba(0, 0, 0, 0.13);
-  border-radius: 3px;
-  background: #ffffff;
-  overflow: hidden;
-  margin: 0 0 10px 0;
-}
-
-li.menu_content_items_listitem a:hover{
-  opacity: 1 !important;
-}
-
-li.menu_content_items_listitem a.soldout,
-li.menu_content_items_listitem a.disabled{
-  pointer-events: none;
-}
-
-li.menu_content_items_listitem a.soldout .menu_item_img,
-li.menu_content_items_listitem a.soldout .menu_item_info p,
-li.menu_content_items_listitem a.soldout .menu_item_info .menu_item_info_price,
-li.menu_content_items_listitem a.disabled .menu_item_img,
-li.menu_content_items_listitem a.disabled .menu_item_info p,
-li.menu_content_items_listitem a.disabled .menu_item_info .menu_item_info_price {
-  opacity: 0.5;
-}
-
 .soldout_label{
   display: none;
 }
@@ -1751,3 +1720,26 @@ li.cancel .menu_item_info_name .text_gray, li.cancel .menu_item_info_price .text
 	margin: 0 10px 0 0;
 }
 
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  height: auto !important;
+}
+
+.modal_item_detail {
+  min-height: 90px;
+  display: flex;
+  margin: 0 0 10px 0;
+}
+
+.item_delete_btn {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+}
