@@ -2,10 +2,9 @@ class MenusController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
 
  def index
-  @menu1 = Menu.find_by(id: 1)
-  @menu2 = Menu.find_by(id: 2)
-  @item_number1 = 2
-  @item_number2 = 3
+  @item_number = 1
+  gon.number = @item_number
+  @menus = Menu.all
  end
 
  def show
@@ -28,6 +27,7 @@ class MenusController < ApplicationController
 
  def create
   @menu = Menu.new(menu_params)
+  @menu.image.attach(params[:menu][:image])
     if @menu.save
       flash[:success] = "Menu item created!"
       redirect_to root_url
@@ -45,6 +45,6 @@ class MenusController < ApplicationController
  private
 
   def menu_params
-    params.require(:menu).permit(:content, :name)
+    params.require(:menu).permit(:content, :name, :image)
   end
 end

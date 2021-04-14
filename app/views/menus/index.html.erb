@@ -27,63 +27,45 @@
 						<div class="menu_content_items">
 							<h2 class="menu_content_items_title">おすすめ</h2>
 							<ul class="menu_content_items_list">
-								<li class="menu_content_items_listitem">
+								<% @menus.each do |menu| %>
 
-									<div class="modal_item_detail">
-										<div>
-											<%= image_tag "mabo.jpeg", class: "menu_item_img" %>
-										</div>
-										<div class="menu_item_info">
-											<p class="menu_item_info_name">
-												定食
-											</p>
-											<p class="menu_item_info_price_wrap list">
-												<span class="menu_item_info_price"><%= @menu1.price %>円</span>
-												<span class="text_gray list">(税抜)</span>
-											</p>
-											<div class="item_number_btn">
-												<div class="item_number_minus">
-													<i class="fas fa-minus" aria-hidden="true"></i>
-												</div>
-												<span class="item_number"><%= @item_number1 %></span>
-												<div class="item_number_plus">
-													<i class="fas fa-plus" aria-hidden="true"></i>
-												</div>
+									<li class="menu_content_items_listitem">
+										<div class="modal_item_detail">
+											<div>
+												<%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
 											</div>
-											<div class="item_delete_btn">
-												<% if logged_in? %>
-													<%= link_to "delete", menus_path, method: :delete,
-																				data: { confirm: "You sure?" } %>
-												<% end %>
-											</div>
-										</div>
-									</div>
-
-									<%= link_to(show_path, class: "modal_item_detail") do %>
-										<div>
-											<%= image_tag "sake.jpeg", class: "menu_item_img" %>
-										</div>
-										<div class="menu_item_info">
-											<p class="menu_item_info_name">
-												日本酒
-											</p>
-											<p class="menu_item_info_price_wrap list">
-												<span class="menu_item_info_price"><%= @menu2.price %>円</span>
-												<span class="text_gray list">(税抜)</span>
-											</p>
-											<div class="item_number_btn">
-												<div class="item_number_minus">
-													<i class="fas fa-minus" aria-hidden="true"></i>
+											<div class="menu_item_info">
+												<p class="menu_item_info_name">
+													<%= menu.name %>
+												</p>
+												<p class="menu_item_info_price_wrap list">
+													<span class="menu_item_info_price"><%= menu.price %>円</span>
+													<span class="text_gray list">(税抜)</span>
+												</p>
+												<div class="item_number_btn">
+													<div class="item_number_minus">
+														<i class="fas fa-minus" aria-hidden="true"></i>
+													</div>
+													<div class="number_box">
+														<span class="item_number"><%= @item_number %></span>
+													</div>
+													<div class="item_number_plus">
+														<button class="count">
+															<i class="fas fa-plus" aria-hidden="true"></i>
+														</button>
+													</div>
 												</div>
-												<span class="item_number"><%= @item_number2 %></span>
-												<div class="item_number_plus">
-													<i class="fas fa-plus" aria-hidden="true"></i>
+												<div class="item_delete_btn">
+													<% if logged_in? %>
+														<%= link_to "delete", menus_path, method: :delete,
+																					data: { confirm: "You sure?" } %>
+													<% end %>
 												</div>
 											</div>
 										</div>
-									<% end %>
-
-								</li>
+									</li>
+									
+								<% end %>
 							</ul>
 						</div>
 					</div>
@@ -94,13 +76,13 @@
 						<div class="menu_total_info_unit">
 							<span class="menu_total_info_headline">数量</span>
 							<span class="menu_total_info_description">
-								<%= @item_number1 + @item_number2 %>
+								<%= "合計数" %>
 							</span>
 						</div>
 						<div class="menu_total_info_unit">
 							<span class="menu_total_info_headline">合計金額</span>
 							<span class="menu_total_info_description">
-								<%= @menu1.price * @item_number1 + @menu2.price * @item_number2 %>円
+								<%= "合計金額" %>円
 								<span class="text_gray">(税抜)</span>
 							</span>
 						</div>

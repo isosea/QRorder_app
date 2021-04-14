@@ -7,6 +7,10 @@ ruby '2.6.6'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'bootstrap-sass'
 gem 'gon'
+gem 'active_storage_validations'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

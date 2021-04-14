@@ -1736,6 +1736,9 @@ input {
   min-height: 90px;
   display: flex;
   margin: 0 0 10px 0;
+  box-shadow: 0.1px 1.5px 6px rgba(0, 0, 0, 0.13);
+  border-radius: 3px;
+  background: white;
 }
 
 .item_delete_btn {
