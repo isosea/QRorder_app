@@ -26,11 +26,11 @@
 					<div class="menu_content">
 						<div class="menu_content_items">
 							<h2 class="menu_content_items_title">おすすめ</h2>
-							<ul class="menu_content_items_list">
-								<% @menus.each do |menu| %>
+							<% @menus.each do |menu| %>
 
+								<ul class="menu_content_items_list">
 									<li class="menu_content_items_listitem">
-										<div class="modal_item_detail">
+										<div class="modal_item_detail" id=<%= menu.id %>>
 											<div>
 												<%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
 											</div>
@@ -43,14 +43,17 @@
 													<span class="text_gray list">(税抜)</span>
 												</p>
 												<div class="item_number_btn">
+													<input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
 													<div class="item_number_minus">
-														<i class="fas fa-minus" aria-hidden="true"></i>
+														<button class="minus_btn" id=<%= menu.id %>>
+															<i class="fas fa-minus" aria-hidden="true"></i>
+														</button>
 													</div>
 													<div class="number_box">
 														<span class="item_number"><%= @item_number %></span>
 													</div>
 													<div class="item_number_plus">
-														<button class="count">
+														<button class="plus_btn" id=<%= menu.id %>>
 															<i class="fas fa-plus" aria-hidden="true"></i>
 														</button>
 													</div>
@@ -64,9 +67,9 @@
 											</div>
 										</div>
 									</li>
-									
-								<% end %>
-							</ul>
+								</ul>
+							<% end %>
+
 						</div>
 					</div>
 				</div>
@@ -76,7 +79,7 @@
 						<div class="menu_total_info_unit">
 							<span class="menu_total_info_headline">数量</span>
 							<span class="menu_total_info_description">
-								<%= "合計数" %>
+								<%=  %>
 							</span>
 						</div>
 						<div class="menu_total_info_unit">
@@ -91,7 +94,6 @@
 						<%= link_to "ご注文", confirm_path %>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

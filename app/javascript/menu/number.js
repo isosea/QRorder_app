@@ -1,16 +1,26 @@
-function appendNumber(new_number) {
-  var count_up = $(".new_number");
+function appendNumber(new_number, menu_id) {
   var number_output = `<i class="item_number">
                           ${new_number}
                           </i>`
-  $(".number_box").append(number_output);
+  $(`#${menu_id} .number_box`).append(number_output);
 }
 
 
 $(function() {
-  $("button").on("click", function() {
-    $(".item_number").remove();
-    var new_number = gon.number++ ;
-    appendNumber(new_number)
+  $(`.plus_btn`).on("click", function() {
+    var menu_id = $(this).attr('id')
+    $(`#${menu_id} .item_number`).remove();
+    var new_number = ++gon.number;
+    appendNumber(new_number, menu_id)
   });
 });
+
+$(function() {
+  $(`.minus_btn`).on("click", function() {
+    var menu_id = $(this).attr('id')
+    $(`#${menu_id} .item_number`).remove();
+    var new_number = --gon.number;
+    appendNumber(new_number, menu_id)
+  });
+});
+

@@ -2,7 +2,7 @@ class MenusController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
 
  def index
-  @item_number = 1
+  @item_number = 0
   gon.number = @item_number
   @menus = Menu.all
  end
@@ -10,6 +10,7 @@ class MenusController < ApplicationController
  def show
   @p = 1
   gon.number = @p
+  @menu = Menu.find_by(id:1)
  end
 
  def confirm
