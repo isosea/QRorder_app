@@ -4,6 +4,7 @@ class Menu < ApplicationRecord
                                       message: "must be a valid image format" },
                       size:         { less_than: 5.megabytes,
                                       message: "should be less than 5MB" }
+  has_many :cart_items
   # 表示用のリサイズ済み画像を返す
   def display_image
     image.variant(resize_to_limit: [105, 105])

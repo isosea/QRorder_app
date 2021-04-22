@@ -12,41 +12,65 @@
     <ul class="total_list">
       <li class="total_listitem">
         <span class="total_listitem_headline">数量</span>
-        <span class="total_listitem_description">4品</span>
+        <span class="total_listitem_description">
+					<%= @cart_items.all.sum(:quantity) %>品
+        </span>
       </li>
       <li class="total_listitem total_listitem_emphasis">
         <span class="total_listitem_headline">合計</span>
-        <span class="total_listitem_description">4000円</span>
+        <span class="total_listitem_description">
+          <% sum = 0 %>
+          <% for i in @cart_items do %>
+            <% menu = Menu.find_by(id: i.menu_id) %>
+            <% sum += menu.price * i.quantity %>
+          <% end %>
+          <%= sum %>円
+        </span>
       </li>
     </ul>
   </div>
   <div class="round_btn round_btn_red">
-    <%= link_to "注文をする", root_path %>
+    <%= link_to "注文をする", history_path %>
   </div>
 </div>
+
 <div class="main">
   <div class="orderlist_content">
     <ul class="orderlist_contents_items_list">
-      <li class="orderlist_contents_items_listitem">
-        <%= image_tag "mabo.jpeg", class: "orderlist_item_img" %>
-        <div class="menu_item_info">
-          <p class="menu_item_info_name">定食</p>
-          <p class="menu_item_info_price">
-            1000円<span class="text-gray">(税抜)</span>
-          </p>
-          <div class="orderlist_items_option">
-            <div class="item_number_btn">
-              <div class="item_number_minus">
-                <i class="fas fa-minus" aria-hidden="true"></i>
+      <% @cart_items.each do |item| %>
+        <li class="orderlist_contents_items_listitem">
+          <%= image_tag "mabo.jpeg", class: "orderlist_item_img" %>
+          <div class="menu_item_info">
+            <p class="menu_item_info_name">
+              <% product = Menu.find_by(id: item.menu_id) %>
+              <%= product.name %>
+            </p>
+            <p class="menu_item_info_price">
+              <%= product.price %>円<span class="text-gray">(税抜)</span>
+            </p>
+            <div class="orderlist_items_option">
+              <div class="item_number_btn">
+                <div class="item_number_minus">
+                  <i class="fas fa-minus" aria-hidden="true"></i>
+                </div>
+                <span class="item_number"><%= item.quantity %></span>
+                <div class="item_number_plus">
+                  <i class="fas fa-plus" aria-hidden="true"></i>
+                </div>
               </div>
-              <span class="item_number">2</span>
-              <div class="item_number_plus">
-                <i class="fas fa-plus" aria-hidden="true"></i>
+              <div class="menu_order_btn">
+                <%= form_with(model: @cart_item) do |f| %>
+                  <div class="price_field">
+                    <%= f.number_field :quantity, placeholder: "数量" %>
+                  </div>
+                  <%= f.hidden_field :menu_id, value: item.menu_id %>
+                  <%= f.submit "注文" %>
+                <% end %>
               </div>
+              <%= link_to "削除", delete_item_path(id: item.id), method: :delete, class: "orderlist_items_option_delete" %>
             </div>
-            <%= link_to "削除", "#", class: "orderlist_items_option_delete" %>
           </div>
-        </div>
+        <% end %>
       </li>
     </ul>
   </div>

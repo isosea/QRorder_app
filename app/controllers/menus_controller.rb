@@ -4,6 +4,7 @@ class MenusController < ApplicationController
  def index
   @item_number = 0
   gon.number = @item_number
+  @cart_items = current_cart.cart_items
   @menus = Menu.all
  end
 
@@ -14,6 +15,7 @@ class MenusController < ApplicationController
  end
 
  def confirm
+  @cart_items = current_cart.cart_items
  end
 
  def history

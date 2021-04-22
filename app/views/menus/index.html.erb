@@ -50,7 +50,14 @@
 														</button>
 													</div>
 													<div class="number_box">
-														<span class="item_number"><%= @item_number %></span>
+														<span class="item_number">
+															<% number = CartItem.find_by(menu_id: menu.id) %>
+															<% if number %>
+																<%= number.quantity %>
+															<% else %>
+																0
+															<% end %>
+														</span>
 													</div>
 													<div class="item_number_plus">
 														<button class="plus_btn" id=<%= menu.id %>>
@@ -60,8 +67,17 @@
 												</div>
 												<div class="item_delete_btn">
 													<% if logged_in? %>
-														<%= link_to "delete", menus_path, method: :delete,
+														<%= link_to "削除", menus_path, method: :delete,
 																					data: { confirm: "You sure?" } %>
+													<% end %>
+												</div>
+												<div class="menu_order_btn">
+													<%= form_with(model: @cart_item) do |f| %>
+														<div class="price_field">
+															<%= f.number_field :quantity, placeholder: "数量" %>
+														</div>
+														<%= f.hidden_field :menu_id, value: menu.id %>
+														<%= f.submit "注文" %>
 													<% end %>
 												</div>
 											</div>
@@ -79,13 +95,18 @@
 						<div class="menu_total_info_unit">
 							<span class="menu_total_info_headline">数量</span>
 							<span class="menu_total_info_description">
-								<%=  %>
+								<%= @cart_items.all.sum(:quantity) %>
 							</span>
 						</div>
 						<div class="menu_total_info_unit">
 							<span class="menu_total_info_headline">合計金額</span>
 							<span class="menu_total_info_description">
-								<%= "合計金額" %>円
+								<% sum = 0 %>
+								<% for i in @cart_items do %>
+									<% menu = Menu.find_by(id: i.menu_id) %>
+									<% sum += menu.price * i.quantity %>
+								<% end %>
+								<%= sum %>円
 								<span class="text_gray">(税抜)</span>
 							</span>
 						</div>
