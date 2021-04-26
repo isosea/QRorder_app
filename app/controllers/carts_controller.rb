@@ -5,7 +5,7 @@ class CartsController < ApplicationController
     @cart_items = current_cart.cart_items
   end
 
-  # 商品一覧画面から、「商品購入」を押した時のアクション
+  # 商品一覧画面から、「注文」を押した時のアクション
   def add_item
     if @cart_item.blank?
       @cart_item = current_cart.cart_items.build(menu_id: params[:menu_id])
@@ -27,6 +27,24 @@ class CartsController < ApplicationController
     item = CartItem.find_by(id: params[:id])
     item.destroy
     redirect_to confirm_path
+  end
+
+  def create
+    @cart = Cart.create
+    session[:cart_id] = @cart.id
+    redirect_to history_path
+  end
+
+  def destroy
+    cart = Cart.find_by(id: params[:id])
+    cart.cart_items.each do |cart_item|
+      history_item = current_history.history_items.build(quantity: cart_item.quantity, menu_id: cart_item.menu_id)
+      history_item.save
+    end
+
+    current_cart.destroy
+    session.delete(:cart_id)
+    redirect_to root_path
   end
 
   private

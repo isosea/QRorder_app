@@ -16,12 +16,15 @@ class MenusController < ApplicationController
 
  def confirm
   @cart_items = current_cart.cart_items
+  @cart = current_cart
  end
 
  def history
+  @history_items = current_history.history_items
  end
 
  def check
+  @history_items = current_history.history_items
  end
 
  def new
@@ -40,7 +43,8 @@ class MenusController < ApplicationController
  end
 
  def destroy
-  @menu.destroy
+  menu = Menu.find_by(id: params[:id])
+  menu.destroy
   flash[:success] = "Menu deleted"
   redirect_to request.referrer || root_url
  end
@@ -48,6 +52,6 @@ class MenusController < ApplicationController
  private
 
   def menu_params
-    params.require(:menu).permit(:content, :name, :image)
+    params.require(:menu).permit(:content, :name, :price, :image)
   end
 end

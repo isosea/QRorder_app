@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_071320) do
+ActiveRecord::Schema.define(version: 2021_04_26_080904) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -35,16 +35,32 @@ ActiveRecord::Schema.define(version: 2021_04_20_071320) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "quantity", default: 0
-    t.integer "cart_id"
     t.integer "menu_id", null: false
+    t.integer "cart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["menu_id"], name: "index_cart_items_on_menu_id"
   end
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "history_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "menu_id", null: false
+    t.integer "history_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["history_id"], name: "index_history_items_on_history_id"
+    t.index ["menu_id"], name: "index_history_items_on_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -65,5 +81,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_071320) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "menus"
+  add_foreign_key "history_items", "histories"
+  add_foreign_key "history_items", "menus"
 end

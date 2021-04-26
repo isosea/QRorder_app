@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_cart
+  helper_method :current_history
 
   def current_cart
     if session[:cart_id]
@@ -13,6 +14,16 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = @cart.id
     end
     @cart
+  end
+
+  def current_history
+    if session[:history_id]
+      @history = History.find(session[:history_id])
+    else
+      @history = History.create
+      session[:history_id] = @history.id
+    end
+    @history
   end
 
   private

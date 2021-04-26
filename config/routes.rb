@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   delete '/delete_item', to: 'carts#delete_item'
   get    '/cart_items',  to: 'cart_items#show'
   resources :users
-  resources :carts, only: [:show]
+  resources :carts, only: [:show, :destroy]
 end

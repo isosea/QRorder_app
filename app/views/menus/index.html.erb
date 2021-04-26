@@ -51,7 +51,7 @@
 													</div>
 													<div class="number_box">
 														<span class="item_number">
-															<% number = CartItem.find_by(menu_id: menu.id) %>
+															<% number = @cart_items.find_by(menu_id: menu.id) %>
 															<% if number %>
 																<%= number.quantity %>
 															<% else %>
@@ -67,7 +67,7 @@
 												</div>
 												<div class="item_delete_btn">
 													<% if logged_in? %>
-														<%= link_to "削除", menus_path, method: :delete,
+														<%= link_to "削除", menus_path(id: menu.id), method: :delete,
 																					data: { confirm: "You sure?" } %>
 													<% end %>
 												</div>

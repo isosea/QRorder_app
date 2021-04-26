@@ -30,7 +30,7 @@
     </ul>
   </div>
   <div class="round_btn round_btn_red">
-    <%= link_to "注文をする", history_path %>
+    <%= link_to "注文をする", cart_path(@cart), method: :delete %>
   </div>
 </div>
 
@@ -38,11 +38,11 @@
   <div class="orderlist_content">
     <ul class="orderlist_contents_items_list">
       <% @cart_items.each do |item| %>
+        <% product = Menu.find_by(id: item.menu_id) %>
         <li class="orderlist_contents_items_listitem">
-          <%= image_tag "mabo.jpeg", class: "orderlist_item_img" %>
+          <%= image_tag product.display_image, class: "orderlist_item_img" if product.image.attached? %>
           <div class="menu_item_info">
             <p class="menu_item_info_name">
-              <% product = Menu.find_by(id: item.menu_id) %>
               <%= product.name %>
             </p>
             <p class="menu_item_info_price">
