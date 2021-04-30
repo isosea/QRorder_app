@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get    '/history',     to: 'menus#history'
   get    '/check',       to: 'menus#check'
   get    '/new',         to: 'menus#new'
+  get    '/thanks',      to: 'menus#thanks'
   post   '/menus',       to: 'menus#create'
   delete '/menus',       to: 'menus#destroy'
   get    '/login',       to: 'sessions#new'

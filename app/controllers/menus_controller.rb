@@ -27,6 +27,17 @@ class MenusController < ApplicationController
   @history_items = current_history.history_items
  end
 
+ def thanks
+  history = current_history
+  history.destroy
+  if current_cart
+    cart = current_cart
+    cart.destroy
+  end
+  session.delete(:cart_id)
+  session.delete(:history_id)
+ end
+
  def new
   @menu = Menu.new if logged_in?
  end
