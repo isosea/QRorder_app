@@ -1,6 +1,7 @@
-<div class="row">
-  <aside class="col-md-4">
+<div>
+  <div class="col-md-6 col-md-offset-3">
     <section class="menu_form">
+      <h1>メニュー作成</h1>
       <%= form_with(model: @menu, local: true) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="name_field">
@@ -12,10 +13,14 @@
         <div class="field">
           <%= f.text_area :content, placeholder: "メニュー内容" %>
         </div>
-        <%= f.submit "Post", class: "btn btn-primary" %>
+        <div class="form-check">
+          <%= f.select :category, [ ["おすすめ", "おすすめ" ], ["ランチ", "ランチ" ], ["肉料理",  "肉料理" ], ["魚介類", "魚介類" ], ["サラダ", "サラダ" ], ["お酒", "お酒" ], ["その他", "その他" ] ], prompt: "カテゴリーを選択してください" %>
+        </div>
+        画像を選択してください
         <span class="image">
           <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
         </span>
+        <%= f.submit "作成", class: "btn btn-primary" %>
       <% end %>
     </section>
   </aside>

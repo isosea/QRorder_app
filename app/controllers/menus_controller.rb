@@ -2,8 +2,6 @@ class MenusController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
 
  def index
-  @item_number = 0
-  gon.number = @item_number
   @cart_items = current_cart.cart_items
   @menus = Menu.all
  end
@@ -46,7 +44,7 @@ class MenusController < ApplicationController
   @menu = Menu.new(menu_params)
   @menu.image.attach(params[:menu][:image])
     if @menu.save
-      flash[:success] = "Menu item created!"
+      flash[:success] = "メニューが追加されました"
       redirect_to root_url
     else
       render 'menus/new'
@@ -63,6 +61,6 @@ class MenusController < ApplicationController
  private
 
   def menu_params
-    params.require(:menu).permit(:content, :name, :price, :image)
+    params.require(:menu).permit(:content, :name, :price, :image, :category)
   end
 end

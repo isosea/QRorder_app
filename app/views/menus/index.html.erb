@@ -2,11 +2,17 @@
 	<div class="justify-content-center">
 		<div>
 			<div class="wrapper menu">   
-
+	
 				<div class="header">
 					<h1 class="header_title">
 						QR Order
 					</h1>
+					<% flash.each do |key, value| %>
+						<div class="alert alert-success" role="alert">
+							<% key %>
+							<%= value %>
+						</div>
+					<% end %>
 					<div class="header_btn header_btn_blue">
 						<%= link_to "履歴", history_path, class: "header_btn_inner" %>
 					</div>
@@ -18,74 +24,134 @@
 				<div class="main">
 					<div class="menu_sidenavi">
 						<ul class="menu_sidenavi_list">
-							<li class="menu_sidenavi_listitem active">
-								<%= link_to "おすすめ", "#" %>
+							<li class="menu_sidenavi_listitem">
+								<%= link_to "おすすめ", root_path(category: "おすすめ") %>
+								<%= link_to "ランチ", root_path(category: "ランチ") %>
+								<%= link_to "肉料理", root_path(category: "肉料理") %>
+								<%= link_to "魚介類", root_path(category: "魚介類") %>
+								<%= link_to "サラダ", root_path(category: "サラダ") %>
+								<%= link_to "お酒", root_path(category: "お酒") %>
+								<%= link_to "その他", root_path(category: "その他") %>
 							</li>
 						</ul>
 					</div>
 					<div class="menu_content">
 						<div class="menu_content_items">
-							<h2 class="menu_content_items_title">おすすめ</h2>
-							<% @menus.each do |menu| %>
+							<% if params[:category] %>
+								<h2 class="menu_content_items_title">
+									<%= params[:category] %>
+								</h2>
+								<% @menus.where(category: params[:category]).find_each do |menu| %>
 
-								<ul class="menu_content_items_list">
-									<li class="menu_content_items_listitem">
-										<div class="modal_item_detail" id=<%= menu.id %>>
-											<div>
-												<%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
-											</div>
-											<div class="menu_item_info">
-												<p class="menu_item_info_name">
-													<%= menu.name %>
-												</p>
-												<p class="menu_item_info_price_wrap list">
-													<span class="menu_item_info_price"><%= menu.price %>円</span>
-													<span class="text_gray list">(税抜)</span>
-												</p>
-												<div class="item_number_btn">
-													<input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
-													<div class="item_number_minus">
-														<button class="minus_btn" id=<%= menu.id %>>
-															<i class="fas fa-minus" aria-hidden="true"></i>
-														</button>
-													</div>
-													<div class="number_box">
-														<span class="item_number">
-															<% number = @cart_items.find_by(menu_id: menu.id) %>
-															<% if number %>
-																<%= number.quantity %>
-															<% else %>
-																0
-															<% end %>
-														</span>
-													</div>
-													<div class="item_number_plus">
-														<button class="plus_btn" id=<%= menu.id %>>
-															<i class="fas fa-plus" aria-hidden="true"></i>
-														</button>
-													</div>
+									<ul class="menu_content_items_list">
+										<li class="menu_content_items_listitem">
+											<div class="modal_item_detail" id=<%= menu.id %>>
+												<div>
+													<%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
 												</div>
-												<div class="item_delete_btn">
-													<% if logged_in? %>
-														<%= link_to "削除", menus_path(id: menu.id), method: :delete,
-																					data: { confirm: "You sure?" } %>
-													<% end %>
-												</div>
-												<div class="menu_order_btn">
-													<%= form_with(model: @cart_item) do |f| %>
-														<div class="price_field">
-															<%= f.number_field :quantity, placeholder: "数量" %>
+												<div class="menu_item_info">
+													<p class="menu_item_info_name">
+														<%= menu.name %>
+													</p>
+													<p class="menu_item_info_price_wrap list">
+														<span class="menu_item_info_price"><%= menu.price %>円</span>
+														<span class="text_gray list">(税抜)</span>
+													</p>
+													<div class="item_number_btn">
+														<input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
+														
+														<div class="number_box">
+															<span class="item_number">
+																<% number = @cart_items.find_by(menu_id: menu.id) %>
+																<% if number %>
+																	x<%= number.quantity %>
+																<% else %>
+																	0
+																<% end %>
+															</span>
 														</div>
-														<%= f.hidden_field :menu_id, value: menu.id %>
-														<%= f.submit "注文" %>
-													<% end %>
+														
+													</div>
+													<div class="item_delete_btn">
+														<% if logged_in? %>
+															<%= link_to "削除", menus_path(id: menu.id), method: :delete,
+																						data: { confirm: "削除しますか？" } %>
+														<% end %>
+													</div>
+													<div class="menu_order_btn">
+														<%= form_with(model: @cart_item) do |f| %>
+															<div class="price_field">
+																<%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
+															</div>
+															<%= f.hidden_field :menu_id, value: menu.id %>
+															<%= f.hidden_field :category, value: menu.category %>
+															<%= f.submit "追加", class: "submit" %>
+														<% end %>
+													</div>
 												</div>
 											</div>
-										</div>
-									</li>
-								</ul>
-							<% end %>
+										</li>
+									</ul>
 
+								<% end %>
+							<% else %>
+								<h2 class="menu_content_items_title">
+									おすすめ
+								</h2>
+								<% @menus.where(category: "おすすめ").find_each do |menu| %>
+
+									<ul class="menu_content_items_list">
+										<li class="menu_content_items_listitem">
+											<div class="modal_item_detail" id=<%= menu.id %>>
+												<div>
+													<%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
+												</div>
+												<div class="menu_item_info">
+													<p class="menu_item_info_name">
+														<%= menu.name %>
+													</p>
+													<p class="menu_item_info_price_wrap list">
+														<span class="menu_item_info_price"><%= menu.price %>円</span>
+														<span class="text_gray list">(税抜)</span>
+													</p>
+													<div class="item_number_btn">
+														<input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
+														
+														<div class="number_box">
+															<span class="item_number">
+																<% number = @cart_items.find_by(menu_id: menu.id) %>
+																<% if number %>
+																	x<%= number.quantity %>
+																<% else %>
+																	0
+																<% end %>
+															</span>
+														</div>
+														
+													</div>
+													<div class="item_delete_btn">
+														<% if logged_in? %>
+															<%= link_to "削除", menus_path(id: menu.id), method: :delete,
+																						data: { confirm: "削除しますか？" } %>
+														<% end %>
+													</div>
+													<div class="menu_order_btn">
+														<%= form_with(model: @cart_item) do |f| %>
+															<div class="price_field">
+																<%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
+															</div>
+															<%= f.hidden_field :menu_id, value: menu.id %>
+															<%= f.hidden_field :category, value: menu.category %>
+															<%= f.submit "追加", class: "submit" %>
+														<% end %>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+
+								<% end %>
+							<% end %>
 						</div>
 					</div>
 				</div>

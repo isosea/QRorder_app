@@ -50,24 +50,21 @@
             </p>
             <div class="orderlist_items_option">
               <div class="item_number_btn">
-                <div class="item_number_minus">
-                  <i class="fas fa-minus" aria-hidden="true"></i>
-                </div>
-                <span class="item_number"><%= item.quantity %></span>
-                <div class="item_number_plus">
-                  <i class="fas fa-plus" aria-hidden="true"></i>
-                </div>
+                
+                <span class="item_number">x<%= item.quantity %></span>
+                
               </div>
               <div class="menu_order_btn">
                 <%= form_with(model: @cart_item) do |f| %>
                   <div class="price_field">
-                    <%= f.number_field :quantity, placeholder: "数量" %>
+                    <%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
                   </div>
                   <%= f.hidden_field :menu_id, value: item.menu_id %>
-                  <%= f.submit "注文" %>
+                  <%= f.submit "変更", class: "submit" %>
                 <% end %>
               </div>
-              <%= link_to "削除", delete_item_path(id: item.id), method: :delete, class: "orderlist_items_option_delete" %>
+              <%= link_to "削除", delete_item_path(id: item.id), method: :delete, class: "orderlist_items_option_delete",
+                                                                data: { confirm: "削除しますか？" } %>
             </div>
           </div>
         <% end %>

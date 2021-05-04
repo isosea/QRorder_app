@@ -270,14 +270,7 @@ label.checkbox .checkbox_label{
 }
 
 .item_number_btn {
-  border: 1px solid #DEDEDE;
   border-radius: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .item_number_btn .item_number_minus, .item_number_btn .item_number_plus {
@@ -292,10 +285,12 @@ label.checkbox .checkbox_label{
 }
 
 .item_number_btn .item_number {
-  min-width: 30px;
   text-align: center;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: bold;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .menu_item_info_name {
@@ -592,7 +587,6 @@ label.checkbox .checkbox_label{
   height: 100%;
   overflow-y: scroll;
   -ms-flex-negative: 0;
-      flex-shrink: 0;
   padding: 0 3px 0 0;
   margin: 0 !important;
 }
@@ -728,11 +722,11 @@ li.menu_sidenavi_listitem.courses.active a::after {
 
 
 li.menu_content_items_listitem .menu_item_img {
-  width: 105px;
-  height: 105px;
+  height: 100%;
   min-width: 40%;
   text-align: center;
   overflow: hidden;
+  border-radius: 3px;
 }
 
 li.menu_content_items_listitem .menu_item_img img {
@@ -773,10 +767,6 @@ li.menu_content_items_listitem .menu_item_img img {
   padding: 5px 10px;
 }
 
-.menu_item_info .item_number_btn {
-  position: absolute;
-  bottom: 8px;
-}
 /* 放題ラベル */
 .menu_item_info .courses_label {
   position: absolute;
@@ -838,14 +828,15 @@ li.menu_content_items_listitem .menu_item_img img {
 }
 
 .menu_total_info_headline {
-  font-size: 12PX;
+  font-size: 10PX;
   font-weight: bold;
   color: #59A2B9;
   margin: 0 0 2px 0;
+  white-space: nowrap;
 }
 
 .menu_total_info_description {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   line-height: 22px;
 }
@@ -865,6 +856,7 @@ li.menu_content_items_listitem .menu_item_img img {
   line-height: 36px;
   padding: 0 20px;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .history .v--modal-box.v--modal,
@@ -887,7 +879,7 @@ li.menu_content_items_listitem .menu_item_img img {
   display: -ms-flexbox;
   display: flex;
   padding: 15px;
-  min-height: 90px;
+  min-height: 110px;
   -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.13);
           box-shadow: 0 1px 8px rgba(0, 0, 0, 0.13);
   border-radius: 3px;
@@ -954,6 +946,9 @@ li.menu_content_items_listitem .menu_item_img img {
   letter-spacing: 1px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  position: absolute;
+  right: 10px;
+  top: 0;
 }
 
 @media screen and (max-width: 360px) {
@@ -1743,6 +1738,42 @@ input {
 
 .item_delete_btn {
   position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#quantity {
+  border-radius: 3px;
+  width: 35px;
+  margin-bottom: 0;
+}
+
+.submit {
+  border-radius: 3px;
+  width: 35px;
+  margin-bottom: 0;
+  color: #ffffff;
+  background: #59A2B9;
+  font-weight: bold;
+  font-size: 14px;
+  position: absolute;
+  bottom: 10px;
   right: 0;
-  bottom: 5px;
+  left: 0;
+  margin: auto;
+}
+
+.number_input {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.menu_form {
+  margin-top: 50px;
+}
+
+.alert {
+  margin-bottom: 0;
+  padding: 3px;
 }

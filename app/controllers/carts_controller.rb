@@ -5,7 +5,7 @@ class CartsController < ApplicationController
     @cart_items = current_cart.cart_items
   end
 
-  # 商品一覧画面から、「注文」を押した時のアクション
+  # 商品一覧画面から、「追加」を押した時のアクション
   def add_item
     if @cart_item.blank?
       @cart_item = current_cart.cart_items.build(menu_id: params[:menu_id])
@@ -13,7 +13,7 @@ class CartsController < ApplicationController
 
     @cart_item.quantity += params[:quantity].to_i
     @cart_item.save
-    redirect_to root_path
+    redirect_to root_path(category: params[:category])
   end
 
   # カート詳細画面から、「更新」を押した時のアクション
@@ -44,7 +44,7 @@ class CartsController < ApplicationController
 
     current_cart.destroy
     session.delete(:cart_id)
-    redirect_to root_path
+    redirect_to root_path, flash: {success: "注文を承りました"}
   end
 
   private
