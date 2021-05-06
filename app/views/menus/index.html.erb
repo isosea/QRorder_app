@@ -51,11 +51,11 @@
 												</div>
 												<div class="menu_item_info">
 													<p class="menu_item_info_name">
-														<%= menu.name %>
+														<%= link_to menu.name, show_path(id: menu.id)%>
 													</p>
 													<p class="menu_item_info_price_wrap list">
 														<span class="menu_item_info_price"><%= menu.price %>円</span>
-														<span class="text_gray list">(税抜)</span>
+														<span class="text_gray list">(税込)</span>
 													</p>
 													<div class="item_number_btn">
 														<input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
@@ -108,11 +108,11 @@
 												</div>
 												<div class="menu_item_info">
 													<p class="menu_item_info_name">
-														<%= menu.name %>
+														<%= link_to menu.name, show_path(id: menu.id)%>
 													</p>
 													<p class="menu_item_info_price_wrap list">
 														<span class="menu_item_info_price"><%= menu.price %>円</span>
-														<span class="text_gray list">(税抜)</span>
+														<span class="text_gray list">(税込)</span>
 													</p>
 													<div class="item_number_btn">
 														<input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
@@ -173,7 +173,7 @@
 									<% sum += menu.price * i.quantity %>
 								<% end %>
 								<%= sum %>円
-								<span class="text_gray">(税抜)</span>
+								<span class="text_gray">(税込)</span>
 							</span>
 						</div>
 					</div>

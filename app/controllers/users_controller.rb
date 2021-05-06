@@ -7,11 +7,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the QRorder_App!"
+      flash[:success] = "QR Orderへようこそ！"
       redirect_to root_url
     else
       render 'new'
     end
+  end
+
+  def show
+    @history_items = HistoryItem.all
   end
 
   private

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root   'menus#index'
-  get    '/show',        to: 'menus#show'
+  get    '/show/:id',    to: 'menus#show', as: 'show'
   get    '/confirm',     to: 'menus#confirm'
   get    '/history',     to: 'menus#history'
   get    '/check',       to: 'menus#check'

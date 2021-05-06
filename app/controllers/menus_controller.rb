@@ -7,9 +7,7 @@ class MenusController < ApplicationController
  end
 
  def show
-  @p = 1
-  gon.number = @p
-  @menu = Menu.find_by(id:1)
+  @menu = Menu.find_by(id: params[:id])
  end
 
  def confirm
@@ -54,7 +52,7 @@ class MenusController < ApplicationController
  def destroy
   menu = Menu.find_by(id: params[:id])
   menu.destroy
-  flash[:success] = "Menu deleted"
+  flash[:success] = "メニューが削除されました"
   redirect_to request.referrer || root_url
  end
 
