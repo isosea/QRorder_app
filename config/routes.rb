@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   post   '/',            to: 'carts#add_item'
   post   '/confirm',     to: 'carts#update_item'
   delete '/delete_item', to: 'carts#delete_item'
-  get    '/cart_items',  to: 'cart_items#show'
   resources :users
   resources :carts, only: [:show, :destroy]
 end

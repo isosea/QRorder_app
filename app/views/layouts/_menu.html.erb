@@ -1,0 +1,49 @@
+<ul class="menu_content_items_list">
+  <li class="menu_content_items_listitem">
+    <div class="modal_item_detail" id=<%= menu.id %>>
+      <div>
+        <%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
+      </div>
+      <div class="menu_item_info">
+        <p class="menu_item_info_name">
+          <%= link_to menu.name, show_path(id: menu.id)%>
+        </p>
+        <p class="menu_item_info_price_wrap list">
+          <span class="menu_item_info_price"><%= menu.price %>円</span>
+          <span class="text_gray list">(税込)</span>
+        </p>
+        <div class="item_number_btn">
+          <input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
+          
+          <div class="number_box">
+            <span class="item_number">
+              <% number = @cart_items.find_by(menu_id: menu.id) %>
+              <% if number %>
+                x<%= number.quantity %>
+              <% else %>
+                0
+              <% end %>
+            </span>
+          </div>
+          
+        </div>
+        <div class="item_delete_btn">
+          <% if logged_in? %>
+            <%= link_to "削除", menus_path(id: menu.id), method: :delete,
+                          data: { confirm: "削除しますか？" } %>
+          <% end %>
+        </div>
+        <div class="menu_order_btn">
+          <%= form_with(model: @cart_item) do |f| %>
+            <div class="price_field">
+              <%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
+            </div>
+            <%= f.hidden_field :menu_id, value: menu.id %>
+            <%= f.hidden_field :category, value: menu.category %>
+            <%= f.submit "追加", class: "submit" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
