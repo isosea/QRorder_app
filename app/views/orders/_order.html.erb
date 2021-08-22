@@ -2,5 +2,7 @@
   <p>
     <% menu = Menu.find_by(id: order.menu_id) %>
     <%= menu.name %>
+    テーブル<%= order.tables_id %>から
+    <%= order.quantity %>個の注文
   </p>
 </div>

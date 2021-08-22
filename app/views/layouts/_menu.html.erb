@@ -16,7 +16,7 @@
           <input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
           
           <div class="number_box">
-            <span class="item_number">
+            <span class="item_number" id=<%= menu.name %>>
               <% number = @cart_items.find_by(menu_id: menu.id) %>
               <% if number %>
                 x<%= number.quantity %>
@@ -34,7 +34,7 @@
           <% end %>
         </div>
         <div class="menu_order_btn">
-          <%= form_with(model: @cart_item) do |f| %>
+          <%= form_with(model: @cart_item, class: "js-form") do |f| %>
             <div class="price_field">
               <%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
             </div>

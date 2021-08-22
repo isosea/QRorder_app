@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   delete '/delete_item', to: 'carts#delete_item'
   resources :users
   resources :carts, only: [:show, :destroy]
+  resources :tables, only: [:show, :create, :new]
 end

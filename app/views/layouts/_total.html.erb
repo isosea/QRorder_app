@@ -1,0 +1,25 @@
+<div class="menu_total">
+  <div class="menu_total_info">
+    <div class="menu_total_info_unit">
+      <span class="menu_total_info_headline">数量</span>
+      <span class="menu_total_info_description">
+        <%= cart_items.all.sum(:quantity) %>
+      </span>
+    </div>
+    <div class="menu_total_info_unit">
+      <span class="menu_total_info_headline">合計金額</span>
+      <span class="menu_total_info_description">
+        <% sum = 0 %>
+        <% for i in cart_items do %>
+          <% menu = Menu.find_by(id: i.menu_id) %>
+          <% sum += menu.price * i.quantity %>
+        <% end %>
+        <%= sum %>円
+        <span class="text_gray">(税込)</span>
+      </span>
+    </div>
+  </div>
+  <div class="menu_order_btn">
+    <%= link_to "ご注文", confirm_path %>
+  </div>
+</div>

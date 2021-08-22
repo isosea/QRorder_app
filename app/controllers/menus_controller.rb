@@ -32,6 +32,7 @@ class MenusController < ApplicationController
   end
   session.delete(:cart_id)
   session.delete(:history_id)
+  session.delete(:table_id)
  end
 
  def new

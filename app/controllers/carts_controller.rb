@@ -12,8 +12,17 @@ class CartsController < ApplicationController
     end
 
     @cart_item.quantity += params[:quantity].to_i
-    @cart_item.save
-    redirect_to root_path(category: params[:category])
+    @cart_items = current_cart.cart_items
+    
+    respond_to do |format|
+      if @cart_item.save
+        format.html { redirect_to root_path(category: params[:category]) } 
+        format.js  # .js.erbが呼び出される
+      else
+        format.html { render :new } # .html.erbを表示
+        format.js { render :errors } # 一番最後に実装の解説あります
+      end
+    end
   end
 
   # カート詳細画面から、「更新」を押した時のアクション
@@ -38,7 +47,7 @@ class CartsController < ApplicationController
   def destroy
     cart = Cart.find_by(id: params[:id])
     cart.cart_items.each do |cart_item|
-      history_item = current_history.history_items.build(quantity: cart_item.quantity, menu_id: cart_item.menu_id)
+      history_item = current_history.history_items.build(quantity: cart_item.quantity, menu_id: cart_item.menu_id, tables_id: session[:table_id])
       history_item.save
     end
 
