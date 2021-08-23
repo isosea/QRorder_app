@@ -566,7 +566,6 @@ li.menu_content_items_listitem .menu_item_img img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 15px;
 }
 
 .menu_total_info {
@@ -576,7 +575,7 @@ li.menu_content_items_listitem .menu_item_img img {
 }
 
 .menu_total_info_unit {
-  margin: 0 50PX 0 0;
+  margin: 0 0 0 50px;
 }
 
 .menu_total_info_headline, .menu_total_info_description {
@@ -613,6 +612,7 @@ li.menu_content_items_listitem .menu_item_img img {
   padding: 0 20px;
   font-size: 14px;
   white-space: nowrap;
+  margin: 0 20px;
 }
 
 .history .v--modal-box.v--modal,
@@ -627,7 +627,7 @@ li.menu_content_items_listitem .menu_item_img img {
 
 
 .orderlist_content {
-  padding: 15px 15px 0 15px;
+  padding: 15px 15px 191px 15px;
 }
 
 .orderlist_contents_items_listitem {

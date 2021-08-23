@@ -1,3 +1,3 @@
 $("#<%= @cart_item.menu.name %>").html("x<%= @cart_item.quantity %>")
 $(".menu_total").html("<%= j(render partial: 'layouts/total', locals: { cart_items: @cart_items }) %>")
-$('.js-form')[0].reset();
+$('.<%= @cart_item.menu.name %>')[0].reset();
