@@ -10,9 +10,13 @@ class TablesController < ApplicationController
 
   def create
     @table = Table.new(table_params)
-    @table.save
-    flash[:success] = "テーブルが追加されました"
-    redirect_to root_url
+    if @table.save
+      flash[:success] = "テーブルが追加されました"
+      redirect_to root_url
+    else
+      flash[:danger] = "ログインしてください"
+      redirect_to root_url
+    end
   end
 
   private

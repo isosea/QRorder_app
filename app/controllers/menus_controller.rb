@@ -46,6 +46,7 @@ class MenusController < ApplicationController
       flash[:success] = "メニューが追加されました"
       redirect_to root_url
     else
+      flash[:danger] = "ログインしてください"
       render 'menus/new'
     end
  end
