@@ -18,5 +18,4 @@ Rails.application.routes.draw do
   resources :users
   resources :carts, only: [:show, :destroy]
   resources :tables, only: [:show, :create, :new]
-  post   'tables/new',   to: 'tables#create'
 end

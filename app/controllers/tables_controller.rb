@@ -1,6 +1,11 @@
 class TablesController < ApplicationController
   def new
-    @table = Table.new if logged_in?
+    if logged_in?
+      @table = Table.new 
+    else
+      flash[:danger] = "ログインしてください"
+      redirect_to root_url
+    end
   end
 
   def show

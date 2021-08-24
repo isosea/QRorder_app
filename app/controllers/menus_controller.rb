@@ -36,7 +36,12 @@ class MenusController < ApplicationController
  end
 
  def new
-  @menu = Menu.new if logged_in?
+  if logged_in?
+    @menu = Menu.new 
+  else
+    flash[:danger] = "ログインしてください"
+    render 'menus/new'
+  end
  end
 
  def create
