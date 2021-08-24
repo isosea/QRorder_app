@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/menus',       to: 'menus#destroy'
   get    '/login',       to: 'sessions#new'
   post   '/login',       to: 'sessions#create'
+  get    '/logout',      to: 'sessions#delete'
   delete '/logout',      to: 'sessions#destroy'
   post   '/',            to: 'carts#add_item'
   post   '/confirm',     to: 'carts#update_item'
