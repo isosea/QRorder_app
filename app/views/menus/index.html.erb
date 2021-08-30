@@ -42,18 +42,18 @@
 									<%= params[:category] %>
 								</h2>
 								<% @menus.where(category: params[:category]).find_each do |menu| %>
-
-									<%= render 'layouts/menu', menu: menu %>
-
+									<div id=<%= menu.name %>>
+										<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
+									</div>
 								<% end %>
 							<% else %>
 								<h2 class="menu_content_items_title">
 									おすすめ
 								</h2>
 								<% @menus.where(category: "おすすめ").find_each do |menu| %>
-
-									<%= render 'layouts/menu', menu: menu %>
-
+									<div id=<%= menu.name %>>
+										<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
+									</div>
 								<% end %>
 							<% end %>
 						</div>

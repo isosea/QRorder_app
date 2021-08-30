@@ -1,3 +1,2 @@
-$("#<%= @cart_item.menu.name %>").html("x<%= @cart_item.quantity %>")
+$("#<%= @cart_item.menu.name %>").html("<%= j(render partial: 'layouts/menu', locals: { cart_items: @cart_items, menu: @cart_item.menu }) %>")
 $(".menu_total").html("<%= j(render partial: 'layouts/total', locals: { cart_items: @cart_items }) %>")
-$('.<%= @cart_item.menu.name %>')[0].reset();

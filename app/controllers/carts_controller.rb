@@ -7,13 +7,17 @@ class CartsController < ApplicationController
 
   # 商品一覧画面から、「追加」を押した時のアクション
   def add_item
-    if @cart_item.blank?
-      @cart_item = current_cart.cart_items.build(menu_id: params[:menu_id])
+    if params[:id] == "plus"
+      @cart_item.quantity = params[:quantity].to_i + 1
+    elsif params[:id] == "minus"
+      @cart_item.quantity = params[:quantity].to_i - 1
+    else
+      flash[:danger] = "不具合が発生しました"
+      render root_path
     end
 
-    @cart_item.quantity += params[:quantity].to_i
     @cart_items = current_cart.cart_items
-    
+
     respond_to do |format|
       if @cart_item.save
         format.html { redirect_to root_path(category: params[:category]) } 

@@ -13,36 +13,30 @@
           <span class="text_gray list">(税込)</span>
         </p>
         <div class="item_number_btn">
-          <input class="menu_id" name="menu_id" type="hidden" value=<%= menu.id %>>
-          
+          <% item = cart_items.find_or_create_by(menu_id: menu.id) %>
+          <div class="item_number_minus">
+            <%= button_to root_path, {remote: true, params: {id: "minus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
+              <i class="fas fa-minus"></i>
+            <% end %>
+          </div>
           <div class="number_box">
             <span class="item_number" id=<%= menu.name %>>
-              <% number = @cart_items.find_by(menu_id: menu.id) %>
-              <% if number %>
-                x<%= number.quantity %>
-              <% else %>
-                0
-              <% end %>
+              <%= item.quantity %>
             </span>
           </div>
-          
+          <div class="item_number_plus">
+            <%= button_to root_path, {remote: true, params: {id: "plus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
+              <i class="fas fa-plus"></i>
+            <% end %>
+          </div>
         </div>
         <div class="item_delete_btn">
           <% if logged_in? %>
-            <%= link_to "削除", menus_path(id: menu.id), method: :delete,
+            <%= link_to "メニュー削除", menus_path(id: menu.id), method: :delete,
                           data: { confirm: "削除しますか？" } %>
           <% end %>
         </div>
-        <div class="menu_order_btn">
-          <%= form_with(model: @cart_item, class: menu.name) do |f| %>
-            <div class="price_field">
-              <%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
-            </div>
-            <%= f.hidden_field :menu_id, value: menu.id %>
-            <%= f.hidden_field :category, value: menu.category %>
-            <%= f.submit "追加", class: "submit" %>
-          <% end %>
-        </div>
+        
       </div>
     </div>
   </li>

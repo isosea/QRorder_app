@@ -1,12 +1,9 @@
-<div class="order_list">
-  <% if @history_items %>
-    <% @history_items.each do |item| %>
-      <% menu = Menu.find_by(id: item.menu_id) %>
-      <%= menu.name %>
-    <% end %>
-  <% end %>
+<div class="header">
+  <h1 class="header_title">
+    注文履歴
+  </h1>
 </div>
-<div id ='orders'>
+<div class="order_list col-md-6 col-md-offset-3" id ='orders'>
   <% @history_items.each do |order| %>
     <%= render partial: 'orders/order', locals: {order: order} %>
   <% end %>

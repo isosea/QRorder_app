@@ -37,29 +37,7 @@
 <div class="main">
   <div class="orderlist_content">
     <ul class="orderlist_contents_items_list">
-      <% @history_items.each do |item| %>
-        <% if item.quantity != 0 %>
-          <% product = Menu.find_by(id: item.menu_id) %>
-          <li class="orderlist_contents_items_listitem">
-            <%= image_tag product.display_image, class: "orderlist_item_img" if product.image.attached? %>
-            <div class="menu_item_info">
-              <p class="menu_item_info_name">
-                <%= product.name %>
-              </p>
-              <p class="menu_item_info_price">
-                <%= product.price %>円<span class="text-gray">(税込)</span>
-              </p>
-              <div class="orderlist_items_option">
-                <div class="item_number_btn">
-                  
-                  <span class="item_number">x<%= item.quantity %></span>
-                  
-                </div>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      <% end %>
+      <%= render @history_items %>
     </ul>
   </div>
 </div>
