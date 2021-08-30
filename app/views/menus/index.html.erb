@@ -25,13 +25,9 @@
 					<div class="menu_sidenavi">
 						<ul class="menu_sidenavi_list">
 							<li class="menu_sidenavi_listitem">
-								<%= link_to "おすすめ", root_path(category: "おすすめ") %>
-								<%= link_to "ランチ", root_path(category: "ランチ") %>
-								<%= link_to "肉料理", root_path(category: "肉料理") %>
-								<%= link_to "魚介類", root_path(category: "魚介類") %>
-								<%= link_to "サラダ", root_path(category: "サラダ") %>
-								<%= link_to "お酒", root_path(category: "お酒") %>
-								<%= link_to "その他", root_path(category: "その他") %>
+								<% @menus.pluck(:category).uniq do |category| %>
+									<%= link_to category, root_path(category: category) %>
+								<% end %>
 							</li>
 						</ul>
 					</div>

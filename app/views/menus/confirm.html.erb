@@ -8,27 +8,9 @@
   <% end %>
 </div>
 <div class="total">
-  <div class="total_list_wrap">
-    <ul class="total_list">
-      <li class="total_listitem">
-        <span class="total_listitem_headline">数量</span>
-        <span class="total_listitem_description">
-					<%= @cart_items.all.sum(:quantity) %>品
-        </span>
-      </li>
-      <li class="total_listitem total_listitem_emphasis">
-        <span class="total_listitem_headline">合計</span>
-        <span class="total_listitem_description">
-          <% sum = 0 %>
-          <% for i in @cart_items do %>
-            <% menu = Menu.find_by(id: i.menu_id) %>
-            <% sum += menu.price * i.quantity %>
-          <% end %>
-          <%= sum %>円
-        </span>
-      </li>
-    </ul>
-  </div>
+  
+  <%= render 'layouts/total_list', items: @cart_items %>
+
   <div class="round_btn round_btn_red">
     <%= link_to "注文をする", cart_path(@cart), method: :delete, class: "order_confirmation" %>
   </div>
@@ -51,9 +33,7 @@
               </p>
               <div class="orderlist_items_option">
                 <div class="item_number_btn">
-                  
                   <span class="item_number">x<%= item.quantity %></span>
-                  
                 </div>
                 <div class="menu_order_btn">
                   <%= form_with(model: @cart_item) do |f| %>

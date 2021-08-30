@@ -13,8 +13,8 @@
         <div class="field">
           <%= f.text_area :content, placeholder: "メニュー内容" %>
         </div>
-        <div class="form-check">
-          <%= f.select :category, [ ["おすすめ", "おすすめ" ], ["ランチ", "ランチ" ], ["肉料理",  "肉料理" ], ["魚介類", "魚介類" ], ["サラダ", "サラダ" ], ["お酒", "お酒" ], ["その他", "その他" ] ], prompt: "カテゴリーを選択してください" %>
+        <div class="name-field">
+          <%= f.text_field :category, placeholder: "カテゴリー" %>
         </div>
         画像を選択してください
         <span class="image">

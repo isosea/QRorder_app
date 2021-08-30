@@ -1,0 +1,21 @@
+<div class="total_list_wrap">
+  <ul class="total_list">
+    <li class="total_listitem">
+      <span class="total_listitem_headline">数量</span>
+      <span class="total_listitem_description">
+        <%= items.all.sum(:quantity) %>品
+      </span>
+    </li>
+    <li class="total_listitem total_listitem_emphasis">
+      <span class="total_listitem_headline">合計</span>
+      <span class="total_listitem_description">
+        <% sum = 0 %>
+        <% for i in items do %>
+          <% menu = Menu.find_by(id: i.menu_id) %>
+          <% sum += menu.price * i.quantity %>
+        <% end %>
+        <%= sum %>円
+      </span>
+    </li>
+  </ul>
+</div>

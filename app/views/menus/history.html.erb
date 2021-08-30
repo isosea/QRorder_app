@@ -11,33 +11,9 @@
   <% end %>
 </div>
 <div class="total">
-  <div class="total_list_wrap">
-    <ul class="total_list">
-      <li class="total_listitem">
-        <span class="total_listitem_headline">数量</span>
-        <span class="total_listitem_description">
-          <%= @history_items.all.sum(:quantity) %>品
-        </span>
-      </li>
-      <li class="total_listitem total_listitem_emphasis">
-        <span class="total_listitem_headline">合計</span>
-        <span class="total_listitem_description">
-          <% sum = 0 %>
-          <% for i in @history_items do %>
-            <% menu = Menu.find_by(id: i.menu_id) %>
-            <% sum += menu.price * i.quantity %>
-          <% end %>
-          <%= sum %>円
-        </span>
-      </li>
-    </ul>
-  </div>
+  
+  <%= render 'layouts/total_list', items: @history_items %>
+
 </div>
 
-<div class="main">
-  <div class="orderlist_content">
-    <ul class="orderlist_contents_items_list">
-      <%= render @history_items %>
-    </ul>
-  </div>
-</div>
+<%= render @history_items %>
