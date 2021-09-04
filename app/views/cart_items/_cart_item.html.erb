@@ -1,0 +1,33 @@
+<% if cart_item.quantity != 0 %>
+<% menu = Menu.find_by(id: cart_item.menu_id) %>
+<li class="orderlist_contents_items_listitem">
+  <%= image_tag menu.display_image, class: "orderlist_item_img" if menu.image.attached? %>
+  <div class="menu_item_info">
+    <p class="menu_item_info_name">
+      <%= menu.name %>
+    </p>
+    <p class="menu_item_info_price">
+      <%= menu.price %>円<span class="text-gray">(税込)</span>
+    </p>
+    <div class="item_number_btn">
+      <div class="item_number_minus">
+        <%= button_to confirm_path, {remote: true, params: {id: "minus", quantity: cart_item.quantity, menu_id: menu.id }} do %>
+        <i class="fas fa-minus"></i>
+        <% end %>
+      </div>
+      <div class="number_box">
+        <span class="item_number">
+          <%= cart_item.quantity %>
+        </span>
+      </div>
+      <div class="item_number_plus">
+        <%= button_to confirm_path, {remote: true, params: {id: "plus", quantity: cart_item.quantity, menu_id: menu.id }} do %>
+        <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to "削除", delete_item_path(id: cart_item.id), method: :delete, class: "orderlist_items_option_delete",
+                                                              data: { confirm: "削除しますか？" } %>
+  </div>
+</li>
+<% end %>

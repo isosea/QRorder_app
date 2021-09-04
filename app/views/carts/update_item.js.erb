@@ -1,0 +1,2 @@
+$("#<%= @cart_item.menu.name %>").html("<%= j(render partial: 'cart_items/cart_item', locals: { cart_item: @cart_item }) %>")
+$(".render").html("<%= j(render partial: 'layouts/total_list', locals: { items: @cart_items }) %>")

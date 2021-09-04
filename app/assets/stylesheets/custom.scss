@@ -939,9 +939,9 @@ li.menu_content_items_listitem .menu_item_img img {
 }
 
 .item_detail_img img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: auto;
   height: 100%;
   border-radius: 5px;
 }

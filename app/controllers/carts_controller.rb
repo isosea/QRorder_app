@@ -5,7 +5,6 @@ class CartsController < ApplicationController
     @cart_items = current_cart.cart_items
   end
 
-  # 商品一覧画面から、「追加」を押した時のアクション
   def add_item
     if params[:id] == "plus"
       @cart_item.quantity = params[:quantity].to_i + 1
@@ -29,10 +28,27 @@ class CartsController < ApplicationController
     end
   end
 
-  # カート詳細画面から、「更新」を押した時のアクション
   def update_item
-    @cart_item.update(quantity: params[:quantity].to_i)
-    redirect_to confirm_path
+    if params[:id] == "plus"
+      @cart_item.quantity = params[:quantity].to_i + 1
+    elsif params[:id] == "minus"
+      @cart_item.quantity = params[:quantity].to_i - 1
+    else
+      flash[:danger] = "不具合が発生しました"
+      render confirm_path
+    end
+
+    @cart_items = current_cart.cart_items
+    logger.debug(@cart_item.quantity)
+    respond_to do |format|
+      if @cart_item.save
+        format.html { redirect_to confirm_path } 
+        format.js  # .js.erbが呼び出される
+      else
+        format.html { render :new } # .html.erbを表示
+        format.js { render :errors } # 一番最後に実装の解説あります
+      end
+    end
   end
 
   # カート詳細画面から、「削除」を押した時のアクション
