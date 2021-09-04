@@ -11,8 +11,8 @@
       <span class="total_listitem_description">
         <% sum = 0 %>
         <% for i in items do %>
-          <% menu = Menu.find_by(id: i.menu_id) %>
-          <% sum += menu.price * i.quantity %>
+        <% menu = Menu.find_by(id: i.menu_id) %>
+        <% sum += menu.price * i.quantity %>
         <% end %>
         <%= sum %>円
       </span>

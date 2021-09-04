@@ -3,14 +3,14 @@
 </div>
 <div class="sub_header">
   <%= link_to(root_path, class: "sub_header_link") do %>
-    <i class="fas fa-angle-left icon"></i>
-    メニュー選択に戻る
+  <i class="fas fa-angle-left icon"></i>
+  メニュー選択に戻る
   <% end %>
 </div>
 <div class="total">
-  
-  <%= render 'layouts/total_list', items: @cart_items %>
-
+  <div class="render">
+    <%= render 'layouts/total_list', items: @cart_items %>
+  </div>
   <div class="round_btn round_btn_red">
     <%= link_to "注文をする", cart_path(@cart), method: :delete, class: "order_confirmation" %>
   </div>
@@ -20,36 +20,9 @@
   <div class="orderlist_content">
     <ul class="orderlist_contents_items_list">
       <% @cart_items.each do |item| %>
-        <% if item.quantity != 0 %>
-          <% product = Menu.find_by(id: item.menu_id) %>
-          <li class="orderlist_contents_items_listitem">
-            <%= image_tag product.display_image, class: "orderlist_item_img" if product.image.attached? %>
-            <div class="menu_item_info">
-              <p class="menu_item_info_name">
-                <%= product.name %>
-              </p>
-              <p class="menu_item_info_price">
-                <%= product.price %>円<span class="text-gray">(税込)</span>
-              </p>
-              <div class="orderlist_items_option">
-                <div class="item_number_btn">
-                  <span class="item_number">x<%= item.quantity %></span>
-                </div>
-                <div class="menu_order_btn">
-                  <%= form_with(model: @cart_item) do |f| %>
-                    <div class="price_field">
-                      <%= f.number_field :quantity, placeholder: "数量", class: "number_input" %>
-                    </div>
-                    <%= f.hidden_field :menu_id, value: item.menu_id %>
-                    <%= f.submit "変更", class: "submit" %>
-                  <% end %>
-                </div>
-                <%= link_to "削除", delete_item_path(id: item.id), method: :delete, class: "orderlist_items_option_delete",
-                                                                  data: { confirm: "削除しますか？" } %>
-              </div>
-            </div>
-          </li>
-        <% end %>
+      <div id=<%= item.menu.name %>>
+        <%= render 'cart_items/cart_item', cart_item: item %>
+      </div>
       <% end %>
     </ul>
   </div>

@@ -1,19 +1,27 @@
 <div class="header">
   <div class="header_title">注文リスト</div>
   <div class="header_btn header_btn_red">
-		<%= link_to "お会計", check_path, class: "header_btn_inner" %>
-	</div>
+    <%= link_to "お会計", check_path, class: "header_btn_inner" %>
+  </div>
 </div>
 <div class="sub_header">
   <%= link_to(root_path, class: "sub_header_link") do %>
-    <i class="fas fa-angle-left icon"></i>
-    メニュー選択に戻る
+  <i class="fas fa-angle-left icon"></i>
+  メニュー選択に戻る
   <% end %>
 </div>
 <div class="total">
-  
+
   <%= render 'layouts/total_list', items: @history_items %>
 
 </div>
 
-<%= render @history_items %>
+<div class="main">
+  <div class="orderlist_content">
+    <ul class="orderlist_contents_items_list">
+
+      <%= render @history_items %>
+
+    </ul>
+  </div>
+</div>

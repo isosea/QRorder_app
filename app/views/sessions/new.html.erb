@@ -3,20 +3,20 @@
 <div>
   <div class="col-md-6 col-md-offset-3">
     <% flash.each do |key, value| %>
-      <div class="alert alert-danger" role="alert">
-        <% key %>
-        <%= value %>
-      </div>
+    <div class="alert alert-danger" role="alert">
+      <% key %>
+      <%= value %>
+    </div>
     <% end %>
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
 
-      <%= f.label :email, "Eメール" %>
-      <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label :email, "Eメール" %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
     <% end %>
 
   </div>

@@ -11,8 +11,8 @@
       <span class="menu_total_info_description">
         <% sum = 0 %>
         <% for i in cart_items do %>
-          <% menu = Menu.find_by(id: i.menu_id) %>
-          <% sum += menu.price * i.quantity %>
+        <% menu = Menu.find_by(id: i.menu_id) %>
+        <% sum += menu.price * i.quantity %>
         <% end %>
         <%= sum %>円
         <span class="text_gray">(税込)</span>

@@ -3,8 +3,8 @@
 </div>
 <div class="sub_header">
   <%= link_to(root_path, class: "sub_header_link") do %>
-    <i class="fas fa-angle-left icon"></i>
-    メニュー選択に戻る
+  <i class="fas fa-angle-left icon"></i>
+  メニュー選択に戻る
   <% end %>
 </div>
 <div class="total">
@@ -16,4 +16,12 @@
   </div>
 </div>
 
-<%= render @history_items %>
+<div class="main">
+  <div class="orderlist_content">
+    <ul class="orderlist_contents_items_list">
+
+      <%= render @history_items %>
+
+    </ul>
+  </div>
+</div>
