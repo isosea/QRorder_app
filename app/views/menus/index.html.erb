@@ -39,7 +39,9 @@
 							</h2>
 							<% @menus.where(category: params[:category]).find_each do |menu| %>
 							<div id=<%= menu.name %>>
-								<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
+								<ul class="menu_content_items_list">
+									<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
+								</ul>
 							</div>
 							<% end %>
 							<% else %>
@@ -49,7 +51,9 @@
 							</h2>
 							<% @menus.where(category: category).find_each do |menu| %>
 							<div id=<%= menu.name %>>
-								<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
+								<ul class="menu_content_items_list">
+									<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
+								</ul>
 							</div>
 							<% end %>
 							<% end %>
