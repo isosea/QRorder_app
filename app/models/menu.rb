@@ -12,4 +12,5 @@ class Menu < ApplicationRecord
   def display_image
     image.variant(resize_to_limit: [105, 105])
   end
+  attribute :existence, :boolean, default: true
 end

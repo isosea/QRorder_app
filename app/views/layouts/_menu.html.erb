@@ -1,42 +1,49 @@
-<ul class="menu_content_items_list">
-  <li class="menu_content_items_listitem">
-    <div class="modal_item_detail">
-      <div>
-        <%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
-      </div>
-      <div class="menu_item_info">
-        <p class="menu_item_info_name">
-          <%= link_to menu.name, show_path(id: menu.id)%>
-        </p>
-        <p class="menu_item_info_price_wrap list">
-          <span class="menu_item_info_price"><%= menu.price %>円</span>
-          <span class="text_gray list">(税込)</span>
-        </p>
-        <div class="item_number_btn">
-          <% item = cart_items.find_or_create_by(menu_id: menu.id) %>
-          <div class="item_number_minus">
-            <%= button_to root_path, {remote: true, params: {id: "minus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
-            <i class="fas fa-minus"></i>
-            <% end %>
-          </div>
-          <div class="number_box">
-            <span class="item_number">
-              <%= item.quantity %>
-            </span>
-          </div>
-          <div class="item_number_plus">
-            <%= button_to root_path, {remote: true, params: {id: "plus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
-            <i class="fas fa-plus"></i>
-            <% end %>
-          </div>
+<% if menu.existence %>
+<li class="menu_content_items_listitem">
+  <div class="modal_item_detail">
+    <div>
+      <%= image_tag menu.display_image, class: "menu_item_img" if menu.image.attached? %>
+    </div>
+    <div class="menu_item_info">
+      <p class="menu_item_info_name">
+        <%= link_to menu.name, show_path(id: menu.id)%>
+      </p>
+      <p class="menu_item_info_price_wrap list">
+        <span class="menu_item_info_price"><%= menu.price %>円</span>
+        <span class="text_gray list">(税込)</span>
+      </p>
+      <div class="item_number_btn">
+        <% item = cart_items.find_or_create_by(menu_id: menu.id) %>
+        <div class="item_number_minus">
+          <%= button_to root_path, {remote: true, params: {id: "minus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
+          <i class="fas fa-minus"></i>
+          <% end %>
         </div>
-        <div class="item_delete_btn">
-          <% if logged_in? %>
-          <%= link_to "メニュー削除", menus_path(id: menu.id), method: :delete,
-                                                                data: { confirm: "削除しますか？" } %>
+        <div class="number_box">
+          <span class="item_number">
+            <%= item.quantity %>
+          </span>
+        </div>
+        <div class="item_number_plus">
+          <%= button_to root_path, {remote: true, params: {id: "plus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
+          <i class="fas fa-plus"></i>
           <% end %>
         </div>
       </div>
+      <div class="item_delete_btn">
+        <% if logged_in? %>
+        <%= link_to "メニュー削除", menus_path(id: menu.id), method: :delete,
+                                                              data: { confirm: "削除しますか？" } %>
+        <% end %>
+      </div>
     </div>
-  </li>
-</ul>
+  </div>
+</li>
+<% else %>
+<p>
+  <i class="fas fa-dizzy"></i>
+  申し訳ございません。
+  <%= link_to menu.name, show_path(id: menu.id) %>
+  は売り切れです。
+</p>
+<% end %>

@@ -72,6 +72,13 @@ class MenusController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def sold_out
+    menu = Menu.find_by(id: params[:id])
+    menu.existence = !menu.existence
+    menu.save
+    redirect_to root_url
+  end
+
   private
 
     def menu_params
