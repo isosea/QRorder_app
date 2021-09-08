@@ -24,11 +24,11 @@
 				<div class="main">
 					<div class="menu_sidenavi">
 						<ul class="menu_sidenavi_list">
+							<% @menus.pluck(:category).uniq.each do |category| %>
 							<li class="menu_sidenavi_listitem">
-								<% @menus.pluck(:category).uniq do |category| %>
 								<%= link_to category, root_path(category: category) %>
-								<% end %>
 							</li>
+							<% end %>
 						</ul>
 					</div>
 					<div class="menu_content">
@@ -37,25 +37,25 @@
 							<h2 class="menu_content_items_title">
 								<%= params[:category] %>
 							</h2>
-							<% @menus.where(category: params[:category]).find_each do |menu| %>
-							<div id=<%= menu.name %>>
-								<ul class="menu_content_items_list">
+							<ul class="menu_content_items_list">
+								<% @menus.where(category: params[:category]).find_each do |menu| %>
+								<div id=<%= menu.name %>>
 									<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
-								</ul>
-							</div>
-							<% end %>
+								</div>
+								<% end %>
+							</ul>
 							<% else %>
 							<% @menus.pluck(:category).uniq.each do |category| %>
 							<h2 class="menu_content_items_title">
 								<%= category %>
 							</h2>
-							<% @menus.where(category: category).find_each do |menu| %>
-							<div id=<%= menu.name %>>
-								<ul class="menu_content_items_list">
+							<ul class="menu_content_items_list">
+								<% @menus.where(category: category).find_each do |menu| %>
+								<div id=<%= menu.name %>>
 									<%= render 'layouts/menu', menu: menu, cart_items: @cart_items %>
-								</ul>
-							</div>
-							<% end %>
+								</div>
+								<% end %>
+							</ul>
 							<% end %>
 							<% end %>
 						</div>
