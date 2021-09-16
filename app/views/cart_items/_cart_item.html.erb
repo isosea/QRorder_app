@@ -12,7 +12,7 @@
     <div class="item_number_btn">
       <div class="item_number_minus">
         <%= button_to confirm_path, {remote: true, params: {id: "minus", quantity: cart_item.quantity, menu_id: menu.id }} do %>
-        <i class="fas fa-minus"></i>
+        <i class="fas fa-minus icon"></i>
         <% end %>
       </div>
       <div class="number_box">
@@ -22,7 +22,7 @@
       </div>
       <div class="item_number_plus">
         <%= button_to confirm_path, {remote: true, params: {id: "plus", quantity: cart_item.quantity, menu_id: menu.id }} do %>
-        <i class="fas fa-plus"></i>
+        <i class="fas fa-plus icon"></i>
         <% end %>
       </div>
     </div>

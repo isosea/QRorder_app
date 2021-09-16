@@ -16,7 +16,7 @@
         <% item = cart_items.find_or_create_by(menu_id: menu.id) %>
         <div class="item_number_minus">
           <%= button_to root_path, {remote: true, params: {id: "minus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
-          <i class="fas fa-minus"></i>
+          <i class="fas fa-minus icon"></i>
           <% end %>
         </div>
         <div class="number_box">
@@ -26,7 +26,7 @@
         </div>
         <div class="item_number_plus">
           <%= button_to root_path, {remote: true, params: {id: "plus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
-          <i class="fas fa-plus"></i>
+          <i class="fas fa-plus icon"></i>
           <% end %>
         </div>
       </div>
@@ -40,7 +40,7 @@
   </div>
 </li>
 <% else %>
-<p>
+<p class="soldout">
   <i class="fas fa-dizzy"></i>
   申し訳ございません。
   <%= link_to menu.name, show_path(id: menu.id) %>

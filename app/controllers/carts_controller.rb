@@ -11,7 +11,7 @@ class CartsController < ApplicationController
     elsif params[:id] == "minus"
       @cart_item.quantity = params[:quantity].to_i - 1
     else
-      flash[:danger] = "不具合が発生しました"
+      flash.now[:danger] = "不具合が発生しました"
       render root_path
     end
 
@@ -34,7 +34,7 @@ class CartsController < ApplicationController
     elsif params[:id] == "minus"
       @cart_item.quantity = params[:quantity].to_i - 1
     else
-      flash[:danger] = "不具合が発生しました"
+      flash.now[:danger] = "不具合が発生しました"
       render confirm_path
     end
 
@@ -66,9 +66,14 @@ class CartsController < ApplicationController
 
   def destroy
     cart = Cart.find_by(id: params[:id])
+    if cart
     cart.cart_items.each do |cart_item|
       history_item = current_history.history_items.build(quantity: cart_item.quantity, menu_id: cart_item.menu_id, tables_id: session[:table_id])
       history_item.save
+    end
+    else
+      flash.now[:danger]="不具合が発生しました"
+      render root_path
     end
 
     current_cart.destroy
