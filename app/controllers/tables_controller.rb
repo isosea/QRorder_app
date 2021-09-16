@@ -10,6 +10,9 @@ class TablesController < ApplicationController
 
   def show
     @table = Table.find_by(id: params[:id])
+    if !logged_in?
+      reset_session
+    end
     session[:table_id] = @table.table_number
   end
 
