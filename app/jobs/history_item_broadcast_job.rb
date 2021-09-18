@@ -7,7 +7,7 @@ class HistoryItemBroadcastJob < ApplicationJob
 
   private
 
-  def render_order(order)
-    ApplicationController.renderer.render(partial: 'orders/order', locals: { order: order })
-  end
+    def render_order(order)
+      ApplicationController.renderer.render(partial: 'orders/order', locals: { order: order })
+    end
 end
