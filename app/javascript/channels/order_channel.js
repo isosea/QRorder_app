@@ -13,6 +13,6 @@ consumer.subscriptions.create("OrderChannel", {
     // Called when there's incoming data on the websocket for this channel
     console.log(data)
     const orders = document.getElementById('orders');
-    orders.insertAdjacentHTML('beforeend', data['order']);
+    orders.insertAdjacentHTML('afterbegin', data['order']);
   }
 });
