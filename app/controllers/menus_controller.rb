@@ -80,7 +80,17 @@ class MenusController < ApplicationController
     redirect_to root_url
   end
 
+  def call
+    ActionCable.server.broadcast 'order_channel', order: render_order(params[:table_id])
+    flash[:success] = "スタッフをお呼びしています。少々お待ちください。"
+    redirect_to root_url
+  end
+
   private
+
+    def render_order(table_id)
+      ApplicationController.renderer.render(partial: 'orders/call', locals: { table: table_id })
+    end
 
     def menu_params
       params.require(:menu).permit(:content, :name, :price, :image, :category)

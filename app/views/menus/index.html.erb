@@ -4,14 +4,25 @@
 
 			<div class="header">
 				<h1 class="header_title">
+					<% if logged_in? %>
+					<%= link_to "QR Order", user_path(current_user)%>
+					<% else %>
 					QR Order
+					<% end %>
 				</h1>
 
-				<div class="header_btn header_btn_blue">
-					<%= link_to "履歴", history_path, class: "header_btn_inner" %>
-				</div>
-				<div class="header_btn header_btn_red">
-					<%= link_to "お会計", check_path, class: "header_btn_inner" %>
+				<div class="btn_wrapper">
+					<% if session[:table_id] %>
+					<div class="header_btn header_btn_blue">
+						<%= link_to "呼出", call_path(table_id: session[:table_id]), class: "header_btn_inner",  method: :post %>
+					</div>
+					<% end %>
+					<div class="header_btn header_btn_blue">
+						<%= link_to "履歴", history_path, class: "header_btn_inner" %>
+					</div>
+					<div class="header_btn header_btn_red">
+						<%= link_to "お会計", check_path, class: "header_btn_inner" %>
+					</div>
 				</div>
 
 			</div>
