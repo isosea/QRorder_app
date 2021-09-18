@@ -3,7 +3,7 @@
     注文履歴
   </h1>
 </div>
-<div class="order_list col-md-6 col-md-offset-3" id='orders'>
+<div class="order_list col-md-6 offset-md-3" id='orders'>
   <% @history_items.each do |order| %>
   <%= render partial: 'orders/order', locals: {order: order} %>
   <% end %>

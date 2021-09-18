@@ -3,13 +3,7 @@
     QR Order
   </h1>
 </div>
-<% flash.each do |key, value| %>
-<div class="alert alert-success" role="alert">
-  <% key %>
-  <%= value %>
-</div>
-<% end %>
-<div class="order_list col-md-6 col-md-offset-3">
+<div class="order_list col-md-6 offset-md-3">
   <ul class="list-group">
     <li class="list-group-item"><%= link_to "メニュー一覧", root_path %></li>
     <li class="list-group-item"><%= link_to "注文履歴", order_path %></li>

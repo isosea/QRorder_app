@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  */
+
 @import "bootstrap";
 
 html {
@@ -201,6 +202,7 @@ body {
   align-items: center;
   width: 100%;
   padding: 0 15px;
+  justify-content: space-between;
 }
 
 .header_title {
@@ -495,6 +497,10 @@ li.menu_sidenavi_listitem.active a::after {
   line-height: 13px;
   padding: 0 0 0 5px;
   margin: 0 0 10px 0;
+}
+
+.menu_content_items_list {
+  padding-left: 0;
 }
 
 li.menu_content_items_listitem .menu_item_img {
@@ -849,9 +855,9 @@ select,
   margin-bottom: 15px;
 }
 
-input {
-  height: auto !important;
-}
+// input {
+//   height: auto !important;
+// }
 
 .modal_item_detail {
   min-height: 90px;
@@ -923,9 +929,12 @@ input {
 
 .form-check-input {
   vertical-align: middle;
-  width: auto;
   position: relative;
   top: -1px;
+}
+
+#flexCheckDefault {
+  float: unset;
 }
 
 input[type="radio"],
@@ -939,4 +948,12 @@ label {
 
 .soldout a {
   font-weight: bold;
+}
+
+.btn_wrapper {
+  display: flex;
+}
+
+.disabled {
+  opacity: 0.2;
 }
