@@ -12,7 +12,7 @@
     <%= render 'layouts/total_list', items: @cart_items %>
   </div>
   <div class="round_btn round_btn_red">
-    <%= link_to "注文をする", cart_path(@cart), method: :delete, class: "order_confirmation" %>
+    <%= link_to "注文をする", cart_path(@cart), method: :delete, class: "order_confirmation", data: { "disable-with": "保存しています..." } %>
   </div>
 </div>
 

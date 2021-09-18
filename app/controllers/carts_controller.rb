@@ -70,14 +70,14 @@ class CartsController < ApplicationController
     cart.cart_items.each do |cart_item|
       history_item = current_history.history_items.build(quantity: cart_item.quantity, menu_id: cart_item.menu_id, tables_id: session[:table_id])
       history_item.save
+      current_cart.destroy
+      session.delete(:cart_id)
     end
     else
       flash.now[:danger]="不具合が発生しました"
       render root_path
     end
 
-    current_cart.destroy
-    session.delete(:cart_id)
     redirect_to root_path, flash: {success: "注文を承りました"}
   end
 
