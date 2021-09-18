@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @history_items = HistoryItem.all
+    @tables = Table.all
   end
 
   private
