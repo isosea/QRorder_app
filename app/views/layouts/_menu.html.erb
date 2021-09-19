@@ -13,25 +13,25 @@
         <span class="text_gray list">(税込)</span>
       </p>
       <div class="item_number_btn">
-        <% item = cart_items.find_or_create_by(menu_id: menu.id) %>
-        <% if item.quantity == 0 %>
+        <% item = cart_items&.find_by(menu_id: menu.id) %>
+        <% if item&.quantity == 0 || !item %>
         <div class="item_number_minus">
           <i class="fas fa-minus icon disabled"></i>
         </div>
         <% else %>
         <div class="item_number_minus">
-          <%= button_to root_path, {remote: true, params: {id: "minus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
+          <%= button_to root_path, {remote: true, params: {id: "minus", quantity: item&.quantity, menu_id: menu.id, category: menu.category}} do %>
           <i class="fas fa-minus icon"></i>
           <% end %>
         </div>
         <% end %>
         <div class="number_box">
           <span class="item_number">
-            <%= item.quantity %>
+            <%= item ? item.quantity : 0 %>
           </span>
         </div>
         <div class="item_number_plus">
-          <%= button_to root_path, {remote: true, params: {id: "plus", quantity: item.quantity, menu_id: menu.id, category: menu.category}} do %>
+          <%= button_to root_path, {remote: true, params: {id: "plus", quantity: item&.quantity, menu_id: menu.id, category: menu.category}} do %>
           <i class="fas fa-plus icon"></i>
           <% end %>
         </div>

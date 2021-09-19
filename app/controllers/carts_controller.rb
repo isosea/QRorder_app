@@ -53,8 +53,7 @@ class CartsController < ApplicationController
 
   # カート詳細画面から、「削除」を押した時のアクション
   def delete_item
-    item = CartItem.find_by(id: params[:id])
-    item.destroy
+    @cart_item.destroy
     redirect_to confirm_path
   end
 
@@ -84,6 +83,6 @@ class CartsController < ApplicationController
   private
 
   def setup_cart_item!
-    @cart_item = current_cart.cart_items.find_by(menu_id: params[:menu_id])
+    @cart_item = current_cart.cart_items.find_or_create_by(menu_id: params[:menu_id])
   end
 end

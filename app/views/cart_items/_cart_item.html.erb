@@ -10,11 +10,17 @@
       <%= menu.price %>円<span class="text-gray">(税込)</span>
     </p>
     <div class="item_number_btn">
+      <% if cart_item.quantity == 1 %>
+      <div class="item_number_minus">
+        <i class="fas fa-minus icon disabled"></i>
+      </div>
+      <% else %>
       <div class="item_number_minus">
         <%= button_to confirm_path, {remote: true, params: {id: "minus", quantity: cart_item.quantity, menu_id: menu.id }} do %>
         <i class="fas fa-minus icon"></i>
         <% end %>
       </div>
+      <% end %>
       <div class="number_box">
         <span class="item_number">
           <%= cart_item.quantity %>
@@ -26,7 +32,7 @@
         <% end %>
       </div>
     </div>
-    <%= link_to "削除", delete_item_path(id: cart_item.id), method: :delete, class: "orderlist_items_option_delete",
+    <%= link_to "削除", delete_item_path(menu_id: cart_item.menu_id), method: :delete, class: "orderlist_items_option_delete",
                                                               data: { confirm: "削除しますか？" } %>
   </div>
 </li>
