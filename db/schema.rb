@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_032811) do
+ActiveRecord::Schema.define(version: 2021_09_29_065801) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_09_05_032811) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "tables_id"
+    t.boolean "checked"
     t.index ["history_id"], name: "index_history_items_on_history_id"
     t.index ["menu_id"], name: "index_history_items_on_menu_id"
     t.index ["tables_id"], name: "index_history_items_on_tables_id"
