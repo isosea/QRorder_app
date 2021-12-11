@@ -25,13 +25,17 @@
       <% if logged_in? %>
       <ul>
         <li><%= link_to "メニュー編集", edit_path(id: @menu.id) %></li>
+        <li>
+          <%= link_to "メニュー削除", menus_path(id: @menu.id), method: :delete,
+                                                              data: { confirm: "削除しますか？" } %>
+        </li>
         <% if @menu.existence %>
         <li><%= link_to "売り切れ", sold_out_path(id: @menu.id), method: :post %></li>
         <% else %>
         <li><%= link_to "売り切れ状態解除", sold_out_path(id: @menu.id), method: :post %></li>
         <% end %>
-        <% end %>
       </ul>
+      <% end %>
     </div>
   </div>
 </div>

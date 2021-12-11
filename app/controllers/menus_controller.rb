@@ -53,6 +53,10 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find_by(id: params[:id])
+    if !@menu
+      flash[:danger] = "メニューが存在しません"
+      redirect_to root_url
+    end
   end
   
   def update
@@ -68,16 +72,26 @@ class MenusController < ApplicationController
 
   def destroy
     menu = Menu.find_by(id: params[:id])
-    menu.destroy
-    flash[:success] = "メニューが削除されました"
-    redirect_to request.referrer || root_url
+    if menu
+      menu.destroy
+      flash[:success] = "メニューが削除されました"
+      redirect_to root_url
+    else 
+      flash[:danger] = "メニューが存在しません"
+      redirect_to root_url
+    end
   end
 
   def sold_out
     menu = Menu.find_by(id: params[:id])
-    menu.existence = !menu.existence
-    menu.save
-    redirect_to root_url
+    if menu
+      menu.toggle(:existence)
+      menu.save
+      redirect_to root_url
+    else
+      flash[:danger] = "メニューが存在しません"
+      redirect_to root_url
+    end
   end
 
   def call

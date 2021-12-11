@@ -10,8 +10,8 @@
     <li class="list-group-item"><%= link_to "メニュー作成", new_path %></li>
     <li class="list-group-item"><%= link_to "テーブル作成", new_table_path %></li>
     <li class="list-group-item"><%= link_to "ログアウト", logout_path %></li>
-    <li>
-      現在のテーブル一覧
+    <li class="list-group-item">
+      現在のテーブル<br>
       <% @tables.each do |table| %>
       <%= table.table_number %>番
       <% end %>

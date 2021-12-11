@@ -36,12 +36,6 @@
           <% end %>
         </div>
       </div>
-      <div class="item_delete_btn">
-        <% if logged_in? %>
-        <%= link_to "メニュー削除", menus_path(id: menu.id), method: :delete,
-                                                              data: { confirm: "削除しますか？" } %>
-        <% end %>
-      </div>
     </div>
   </div>
 </li>

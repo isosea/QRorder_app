@@ -1,5 +1,5 @@
 <div class="col-md-6 offset-md-3">
-  <section class="menu_form">
+  <section class="form">
     <h1>メニュー<%= yield(:button_text) %></h1>
     <%= form_with(model: @menu, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>

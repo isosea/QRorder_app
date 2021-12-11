@@ -3,8 +3,20 @@
     注文履歴
   </h1>
 </div>
-<div class="order_list col-md-6 offset-md-3" id='orders'>
-  <% @history_items.each do |order| %>
-  <%= render partial: 'orders/order', locals: {order: order} %>
+<div class="sub_header">
+  <%= link_to user_path(current_user), class: "sub_header_link" do %>
+  <i class="fas fa-angle-left icon"></i>
+  従業員メニューへ
   <% end %>
+</div>
+<div class="order_list col-md-6 offset-md-3">
+  <ul class="list-group" id='orders'>
+    <% @history_items.each do |order| %>
+    <div id=<%= "container#{order.id}" %>>
+      <div id=<%= order.id %>>
+        <%= render partial: 'orders/order', locals: {order: order} %>
+      </div>
+    </div>
+    <% end %>
+  </ul>
 </div>
